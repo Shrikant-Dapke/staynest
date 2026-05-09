@@ -1,16 +1,43 @@
 <% layout("/layouts/boilerplate") %>
- 
+
 <body>
-    <h3>All listings</h3>
-    <!-- <form method="GET" action="/listings/new">
-        <button type="submit">Create New Listing</button>
-    </form> -->
+    <div class="container mt-4">
+        <h3 class="mb-4 text-center">All Listings</h3>
 
-    <ul>
-    <% for(let listing of allListings){ %>
-        <li> <a href="/listings/<%= listing._id %>"> <%= listing.title %> </a> </li>
-    <% } %>
-</ul>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+            <% for(let listing of allListings){ %>
+
+                <div class="col">
+                    <a href="/listings/<%= listing._id %>" 
+                       class="listing-link text-decoration-none text-dark">
+
+                        <div class="card h-100 shadow-sm border-0">
+
+                            <img 
+                                src="<%= listing.image && listing.image.url ? listing.image.url : 'https://images.unsplash.com/photo-1609021442366-7a91ea8632d4?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' %>" 
+                                class="card-img-top"
+                                alt="listing_image"
+                                style="height: 20rem; object-fit: cover;"
+                            >
+                            <div class="card-img-overlay"></div>
+                            <div class="card-body">
+                                <p class="card-text mb-1">
+                                    <b><%= listing.title %></b>
+                                </p>
+
+                                <p class="card-text text-muted">
+                                    &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </a>
+                </div>
+
+            <% } %>
+
+        </div>
+    </div>
 </body>
-
-
