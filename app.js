@@ -73,22 +73,8 @@ app.put("/listings/:id", async (req, res) => {
 app.delete("/listings/:id", async (req, res) => {
   const { id } = req.params;
   let deletedListing = await Listing.findByIdAndDelete(id);
-  console.log(deletedListing);
   res.redirect("/listings");
 });
-// app.get("/listings", async (req, res) => {
-//   let sampleListings = new Listing({
-//     title: "Cozy Cottage",
-//     description: "A charming cottage nestled in the countryside.",
-//     price: 120,
-//     location: "Countryside",
-//     country: "USA",
-//   });
-
-//   await sampleListings.save();
-//   console.log("Sample listing saved to the database");
-//   res.send("Sample listing created and saved to the database");
-// });
 
 app.listen(8080, () => {
   console.log("Server is running on port 8080");
